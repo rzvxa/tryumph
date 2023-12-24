@@ -1,0 +1,35 @@
+{
+  "name": "tryumph",
+  "version": "1.0.0",
+  "description": "Bring the \"Umph\" to the javascript's async error handling",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "prepublish": "tsc",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rzvxa/tryumph.git"
+  },
+  "keywords": [
+    "async",
+    "errorHandling",
+    "dontThrow'"
+  ],
+  "author": "rzvxa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rzvxa/tryumph/issues"
+  },
+  "homepage": "https://github.com/rzvxa/tryumph#readme",
+  "dependencies": {
+    "mocha": "^10.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
