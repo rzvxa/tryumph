@@ -1,3 +1,5 @@
+import type { Matcher } from "./matcher";
+
 class Result<TResult, TError> {
   #result: TResult | undefined;
   #error: TError | undefined;
@@ -83,6 +85,17 @@ class Result<TResult, TError> {
       return this as unknown as Result<TResult, TError>;
     } else {
       return other;
+    }
+  };
+
+  match = <TMatchResult>(
+    ...matchers: Matcher<TResult, TError, TMatchResult>[]
+  ): TMatchResult => {
+    const match = matchers.find((matcher) => matcher.condition(this));
+    if (match) {
+      return match.transform(this);
+    } else {
+      throw "Non exhaustive pattern matching is not allowed!";
     }
   };
 }
