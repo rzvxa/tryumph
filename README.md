@@ -27,6 +27,7 @@ That seems too rusty? What about something like this? Let's Go!
   const { res, err } = await tryAsync(itMayThrow());
   if (!!err) {
     handleError(err);
+    return;
   }
   consumeResult(res);
 ```
