@@ -7,19 +7,19 @@ Bring the "Umph" back to the JavaScript error handling!
 ## What is it?
 ```js
   const a = await tryAsync(itWillBeFine());
-  console.log(result.isOk()); // true
-  console.log(result.isErr()); // false
-  console.log(result.ok()); // "Result"
-  console.log(result.error()); // undefined
-  console.log(result.unwrap()); // "Result"
-  console.log(result.unwrapOr("Default")); // "Result"
+  console.log(a.isOk()); // true
+  console.log(a.isErr()); // false
+  console.log(a.ok()); // "Result"
+  console.log(a.error()); // undefined
+  console.log(a.unwrap()); // "Result"
+  console.log(a.unwrapOr("Default")); // "Result"
   const b = await tryAsync(itWillThrow());
-  console.log(result.isOk()); // false
-  console.log(result.isErr()); // true
-  console.log(result.ok()); // undefined
-  console.log(result.error()); // "Error"
-  console.log(result.unwrap()); // CRASH!! it will throw the error!
-  console.log(result.unwrapOr("Default")); // "Default"
+  console.log(b.isOk()); // false
+  console.log(b.isErr()); // true
+  console.log(b.ok()); // undefined
+  console.log(b.error()); // "Error"
+  console.log(b.unwrap()); // CRASH!! it will throw the error!
+  console.log(b.unwrapOr("Default")); // "Default"
 ```
 
 That seems too rusty? What about something like this? Let's Go!
