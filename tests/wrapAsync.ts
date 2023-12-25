@@ -1,8 +1,8 @@
-async function wrapValue<TResult>(value: TResult) {
+async function wrapValue<TResult>(value: TResult): Promise<TResult> {
   return value;
 }
 
-async function wrapError<TResult>(error: TResult) {
+async function wrapError<TError>(error: TError): Promise<unknown> {
   throw error;
 }
 

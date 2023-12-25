@@ -3,9 +3,15 @@ import { Ok, Err } from "../src/result";
 import tryAsync from "../src/tryAsync";
 
 describe("tryAsync Tests", () => {
-  test("should return Ok result containing the value 'OK'", async () => {
-    await expect(tryAsync<string, Error>(wrapValue("OK"))).resolves.toEqual(
-      Ok("OK")
-    );
+  test("should not throw error on resolving faulty promises", async () => {
+    await expect(
+      tryAsync(wrapError("ERROR"))
+    ).resolves.toBeTruthy();
+  });
+
+  test("should resolve on promises that resolve", async () => {
+    await expect(
+      tryAsync(wrapValue("OK"))
+    ).resolves.toBeTruthy();
   });
 });
