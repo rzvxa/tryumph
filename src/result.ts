@@ -6,12 +6,59 @@ type Result<TResult, TError> = {
   error: () => TError;
 };
 
+function isOk<TResult, TError>(
+  result: TResult | null,
+  error: TError | null
+): boolean {
+  return result !== null;
+}
+
+function isErr<TResult, TError>(
+  result: TResult | null,
+  error: TError | null
+): boolean {
+  return error !== null;
+}
+
+function unwrap<TResult, TError>(
+  result: TResult | null,
+  error: TError | null
+): TResult {
+  if (isErr(result, error)) {
+    throw error;
+  } else {
+    return result!;
+  }
+}
+
+function getOk<TResult, TError>(
+  result: TResult | null,
+  error: TError | null
+): TResult {
+  if (isErr(result, error)) {
+    throw "Illegal attempt to access result value on a Err result! Check if the result 'isOk' before calling this function.";
+  } else {
+    return result!;
+  }
+}
+
+function getError<TResult, TError>(
+  result: TResult | null,
+  error: TError | null
+): TError {
+  if (isOk(result, error)) {
+    throw "Illegal attempt to access error value on a Ok result! Check if the result 'isErr' before calling this function.";
+  } else {
+    return error!;
+  }
+}
+
 function makeResult<TResult, TError>({
   result = null,
   error = null,
 }: {
-  result?: TResult;
-  error?: TError;
+  result?: TResult | null;
+  error?: TError | null;
 }): Result<TResult, TError> {
   if (result === null && error === null) {
     throw Error(
@@ -23,35 +70,13 @@ function makeResult<TResult, TError>({
       "Both result and error where provided, You should only pass one to the constructor"
     );
   }
-  const isOk = () => {
-    return result !== null;
-  };
-  const isErr = () => {
-    return error !== null;
-  };
-  const unwrap = () => {
-    if (isErr()) {
-      throw error;
-    }
-    return result;
-  };
 
   return {
-    isOk,
-    isErr,
-    unwrap,
-    ok: () => {
-      if (isErr()) {
-        throw "Illegal attempt to access result value on a Err result! Check if the result 'isOk' before calling this function.";
-      }
-      return result;
-    },
-    error: () => {
-      if (isOk()) {
-        throw "Illegal attempt to access error value on a Ok result! Check if the result 'isErr' before calling this function.";
-      }
-      return error;
-    },
+    isOk: () => isOk(result, error),
+    isErr: () => isErr(result, error),
+    unwrap: () => unwrap(result, error),
+    ok: () => getOk(result, error),
+    error: () => getError(result, error),
   };
 }
 
