@@ -8,7 +8,7 @@ async function tryAsync<TResult, TError>(
     const result = await promise;
     return Ok(result);
   } catch (err) {
-    return Err(err);
+    return Err(err as TError);
   }
 }
 
