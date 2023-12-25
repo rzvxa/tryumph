@@ -93,3 +93,11 @@ As you can see it really easily gets out of hand... So let's rewrite it using `t
   consumeResult(user, avatar);
 ```
 Much cleaner huh? `tryumph` borrows heavily from `Rust` and `Go` error handling to provide a more sane way for keeping errors under control!
+
+## Roadmap
+
+- [ ] Make it feature complete
+- [ ] Write additional tests to cover more edge cases
+- [ ] Full documentation
+- [ ] Examples
+- [ ] Publish production ready release
