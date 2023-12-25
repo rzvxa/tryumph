@@ -41,8 +41,8 @@ describe("Ok Result Tests", () => {
 });
 
 describe("Result 'or' function Tests", () => {
-  const firstOk = Ok<unknown, unknown>("FIRST_ERR");
-  const secondOk = Ok<unknown, unknown>("SECOND_ERR");
+  const firstOk = Ok<unknown, unknown>("FIRST_OK");
+  const secondOk = Ok<unknown, unknown>("SECOND_OK");
 
   const firstErr = Err<unknown, unknown>("FIRST_ERR");
   const secondErr = Err<unknown, unknown>("SECOND_ERR");
@@ -61,6 +61,30 @@ describe("Result 'or' function Tests", () => {
 
   test("should return first Ok Result if both Results are Ok", () => {
     expect(firstOk.or(secondOk).isOk()).toBe(true);
+  });
+});
+
+describe("Result 'and' function Tests", () => {
+  const firstOk = Ok<unknown, unknown>("FIRST_OK");
+  const secondOk = Ok<unknown, unknown>("SECOND_OK");
+
+  const firstErr = Err<unknown, unknown>("FIRST_ERR");
+  const secondErr = Err<unknown, unknown>("SECOND_ERR");
+
+  test("should return second result if first one is Ok", () => {
+    expect(firstOk.and(secondErr)).toBe(secondErr);
+  });
+
+  test("should return first result if it is Err", () => {
+    expect(firstErr.and(secondOk)).toBe(firstErr);
+  });
+
+  test("should return first result if both are Err", () => {
+    expect(firstErr.and(secondErr)).toBe(firstErr);
+  });
+
+  test("should return second result if both are Ok", () => {
+    expect(firstOk.and(secondOk)).toBe(secondOk);
   });
 });
 

@@ -69,6 +69,14 @@ class Result<TResult, TError> {
       return other;
     }
   };
+
+  and = <TResult>(other: Result<TResult, TError>): Result<TResult, TError> => {
+    if (this.isErr()) {
+      return this as unknown as Result<TResult, TError>;
+    } else {
+      return other;
+    }
+  };
 }
 
 function Ok<TResult, TError>(result: TResult): Result<TResult, TError> {
