@@ -23,6 +23,26 @@ describe("Ok Result Tests", () => {
 });
 
 describe("Err Result Tests", () => {
+  test("should return a Result not reporting isOk status", () => {
+    expect(Err("").isOk()).toBe(false);
+  });
+
+  test("should return a Result reporting isErr status", () => {
+    expect(Err("").isErr()).toBe(true);
+  });
+
+  test("should return a Result which throw 'ERROR' on being unwraped", () => {
+    expect(Err("ERROR").unwrap).toThrow("ERROR");
+  });
+
+  test("should return a Result with error value equal to 'ERROR'", () => {
+    expect(Err("ERROR").error()).toBe("ERROR");
+  });
+
+  test("should throw if we attempt to read it's ok value", () => {
+    expect(Err("OK").ok).toThrow();
+  });
+
   test("should return a Result with error value equal to 'ERROR'", () => {
     expect(Err("ERROR").error()).toBe("ERROR");
   });
