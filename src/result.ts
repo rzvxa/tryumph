@@ -26,6 +26,10 @@ class Result<TResult, TError> {
 
   isOk = () => this.#result !== undefined;
   isErr = () => this.#error !== undefined;
+
+  ok = () => this.#result;
+  error = () => this.#error;
+
   unwrap = () => {
     if (this.isOk()) {
       return this.#result!;
@@ -33,6 +37,7 @@ class Result<TResult, TError> {
       throw this.#error;
     }
   };
+
   unwrapErr = () => {
     if (this.isErr()) {
       return this.#error!;
@@ -40,6 +45,7 @@ class Result<TResult, TError> {
       throw this.#result;
     }
   };
+
   unwrapOr = (defaultResult: TResult) => {
     if (this.isErr()) {
       return defaultResult;
@@ -47,6 +53,7 @@ class Result<TResult, TError> {
       return this.#result!;
     }
   };
+
   unwrapOrElse = (defaultProvider: (error: TError) => TResult) => {
     if (this.isErr()) {
       return defaultProvider(this.#error!);
@@ -54,8 +61,6 @@ class Result<TResult, TError> {
       return this.#result!;
     }
   };
-  ok = () => this.#result;
-  error = () => this.#error;
 }
 
 function Ok<TResult, TError>(result: TResult): Result<TResult, TError> {
