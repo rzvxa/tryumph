@@ -24,13 +24,13 @@ class Result<TResult, TError> {
     this.#error = error;
   }
 
-  isOk = () => this.#result !== undefined;
-  isErr = () => this.#error !== undefined;
+  isOk = (): boolean => this.#result !== undefined;
+  isErr = (): boolean => this.#error !== undefined;
 
-  ok = () => this.#result;
-  error = () => this.#error;
+  ok = (): TResult => this.#result!;
+  error = (): TError => this.#error!;
 
-  unwrap = () => {
+  unwrap = (): TResult => {
     if (this.isOk()) {
       return this.#result!;
     } else {
@@ -38,7 +38,7 @@ class Result<TResult, TError> {
     }
   };
 
-  unwrapErr = () => {
+  unwrapErr = (): TError => {
     if (this.isErr()) {
       return this.#error!;
     } else {
@@ -46,7 +46,7 @@ class Result<TResult, TError> {
     }
   };
 
-  unwrapOr = (defaultResult: TResult) => {
+  unwrapOr = (defaultResult: TResult): TResult => {
     if (this.isErr()) {
       return defaultResult;
     } else {
@@ -54,7 +54,7 @@ class Result<TResult, TError> {
     }
   };
 
-  unwrapOrElse = (defaultProvider: (error: TError) => TResult) => {
+  unwrapOrElse = (defaultProvider: (error: TError) => TResult): TResult => {
     if (this.isErr()) {
       return defaultProvider(this.#error!);
     } else {
