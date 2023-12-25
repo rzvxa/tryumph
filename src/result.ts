@@ -2,6 +2,14 @@ class Result<TResult, TError> {
   #result: TResult | undefined;
   #error: TError | undefined;
 
+  public get res(): TResult | undefined {
+    return this.#result!;
+  }
+
+  public get err(): TError | undefined {
+    return this.#error!;
+  }
+
   constructor({
     result = undefined,
     error = undefined,

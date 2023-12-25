@@ -131,3 +131,10 @@ describe("Err Result Tests", () => {
     expect(closure).toHaveBeenCalledTimes(1);
   });
 });
+
+describe("Deconstructing Result Tests", () => {
+  test("should return a Result that can be decunstructed to { res, err }", () => {
+    expect(Ok("OK")).toEqual(expect.objectContaining({ res: "OK" }));
+    expect(Err("ERROR")).toEqual(expect.objectContaining({ err: "ERROR" }));
+  });
+});
