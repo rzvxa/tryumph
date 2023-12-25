@@ -1,13 +1,6 @@
-// export async function tryGet(promise) {
-//   try {
-//     const result = await promise;
-//     return result;
-//   } catch (err) {
-//     return err;
-//   }
-// }
-export const test = "OK!!";
+import type { Result } from "./result";
+import { Ok, Err } from "./result";
+import tryAsync from "./tryAsync";
 
-export function addition(a: number, b: number): number {
-  return a + b;
-}
+export type { Result };
+export { Ok, Err, tryAsync };
