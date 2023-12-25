@@ -2,65 +2,20 @@ type Result<TResult, TError> = {
   isOk: () => boolean;
   isErr: () => boolean;
   unwrap: () => TResult;
-  ok: () => TResult;
-  error: () => TError;
+  unwrapOr: (defaultResult: TResult) => TResult;
+  unwrapOrElse: (defaultProvider: (error: TError) => TResult) => TResult;
+  ok: () => TResult | undefined;
+  error: () => TError | undefined;
 };
 
-function isOk<TResult, TError>(
-  result: TResult | null,
-  error: TError | null
-): boolean {
-  return result !== null;
-}
-
-function isErr<TResult, TError>(
-  result: TResult | null,
-  error: TError | null
-): boolean {
-  return error !== null;
-}
-
-function unwrap<TResult, TError>(
-  result: TResult | null,
-  error: TError | null
-): TResult {
-  if (isErr(result, error)) {
-    throw error;
-  } else {
-    return result!;
-  }
-}
-
-function getOk<TResult, TError>(
-  result: TResult | null,
-  error: TError | null
-): TResult {
-  if (isErr(result, error)) {
-    throw "Illegal attempt to access result value on a Err result! Check if the result 'isOk' before calling this function.";
-  } else {
-    return result!;
-  }
-}
-
-function getError<TResult, TError>(
-  result: TResult | null,
-  error: TError | null
-): TError {
-  if (isOk(result, error)) {
-    throw "Illegal attempt to access error value on a Ok result! Check if the result 'isErr' before calling this function.";
-  } else {
-    return error!;
-  }
-}
-
 function makeResult<TResult, TError>({
-  result = null,
-  error = null,
+  result = undefined,
+  error = undefined,
 }: {
-  result?: TResult | null;
-  error?: TError | null;
+  result?: TResult | undefined;
+  error?: TError | undefined;
 }): Result<TResult, TError> {
-  if (result === null && error === null) {
+  if (result === undefined && error === undefined) {
     throw Error(
       "No result nor error where provided, You should provide at least one in order to make a result"
     );
@@ -71,12 +26,35 @@ function makeResult<TResult, TError>({
     );
   }
 
+  const isOk = () => result !== undefined;
+  const isErr = () => error !== undefined;
+
   return {
-    isOk: () => isOk(result, error),
-    isErr: () => isErr(result, error),
-    unwrap: () => unwrap(result, error),
-    ok: () => getOk(result, error),
-    error: () => getError(result, error),
+    isOk,
+    isErr,
+    unwrap: () => {
+      if (isOk()) {
+        return result!;
+      } else {
+        throw error;
+      }
+    },
+    unwrapOr: (defaultResult: TResult) => {
+      if (isErr()) {
+        return defaultResult;
+      } else {
+        return result!;
+      }
+    },
+    unwrapOrElse: (defaultProvider: (error: TError) => TResult) => {
+      if (isErr()) {
+        return defaultProvider(error!);
+      } else {
+        return result!;
+      }
+    },
+    ok: () => result,
+    error: () => error,
   };
 }
 

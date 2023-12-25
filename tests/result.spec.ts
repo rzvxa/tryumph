@@ -17,8 +17,8 @@ describe("Ok Result Tests", () => {
     expect(Ok("OK").ok()).toBe("OK");
   });
 
-  test("should throw if we attempt to read it's error value", () => {
-    expect(Ok("OK").error).toThrow();
+  test("should return undefiend if we attempt to read it's error value", () => {
+    expect(Ok("OK").error()).toBeUndefined();
   });
 });
 
@@ -39,8 +39,8 @@ describe("Err Result Tests", () => {
     expect(Err("ERROR").error()).toBe("ERROR");
   });
 
-  test("should throw if we attempt to read it's ok value", () => {
-    expect(Err("OK").ok).toThrow();
+  test("should return undefined if we attempt to read it's ok value", () => {
+    expect(Err("OK").ok()).toBeUndefined();
   });
 
   test("should return a Result with error value equal to 'ERROR'", () => {
