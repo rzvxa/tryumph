@@ -61,6 +61,14 @@ class Result<TResult, TError> {
       return this.#result!;
     }
   };
+
+  or = (other: Result<TResult, TError>): Result<TResult, TError> => {
+    if (this.isOk()) {
+      return this;
+    } else {
+      return other;
+    }
+  };
 }
 
 function Ok<TResult, TError>(result: TResult): Result<TResult, TError> {

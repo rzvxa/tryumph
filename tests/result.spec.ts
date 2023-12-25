@@ -40,6 +40,30 @@ describe("Ok Result Tests", () => {
   });
 });
 
+describe("Result 'or' function Tests", () => {
+  const firstOk = Ok<unknown, unknown>("FIRST_ERR");
+  const secondOk = Ok<unknown, unknown>("SECOND_ERR");
+
+  const firstErr = Err<unknown, unknown>("FIRST_ERR");
+  const secondErr = Err<unknown, unknown>("SECOND_ERR");
+
+  test("should return first Result if first Result is Ok", () => {
+    expect(firstOk.or(secondOk)).toBe(firstOk);
+  });
+
+  test("should return second Result if first Result is Err", () => {
+    expect(firstErr.or(secondOk)).toBe(secondOk);
+  });
+
+  test("should return second Err Result if both Results are Err", () => {
+    expect(firstErr.or(secondErr).isErr()).toBe(true);
+  });
+
+  test("should return first Ok Result if both Results are Ok", () => {
+    expect(firstOk.or(secondOk).isOk()).toBe(true);
+  });
+});
+
 describe("Err Result Tests", () => {
   test("should return a Result not reporting isOk status", () => {
     expect(Err("").isOk()).toBe(false);
