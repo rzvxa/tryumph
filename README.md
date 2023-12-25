@@ -6,20 +6,11 @@ Bring the "Umph" back to the JavaScript error handling!
 
 ## What is it?
 ```js
-  const a = await tryAsync(itWillBeFine());
-  console.log(a.isOk()); // true
-  console.log(a.isErr()); // false
-  console.log(a.ok()); // "Result"
-  console.log(a.error()); // undefined
-  console.log(a.unwrap()); // "Result"
-  console.log(a.unwrapOr("Default")); // "Result"
-  const b = await tryAsync(itWillThrow());
-  console.log(b.isOk()); // false
-  console.log(b.isErr()); // true
-  console.log(b.ok()); // undefined
-  console.log(b.error()); // "Error"
-  console.log(b.unwrap()); // CRASH!! it will throw the error!
-  console.log(b.unwrapOr("Default")); // "Default"
+  const result = await tryAsync(itMayThrow());
+  result.match(
+    when(Ok, consumeResult),
+    when(Err, handleError)
+  );
 ```
 
 That seems too rusty? What about something like this? Let's Go!
