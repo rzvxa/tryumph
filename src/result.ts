@@ -2,6 +2,7 @@ type Result<TResult, TError> = {
   isOk: () => boolean;
   isErr: () => boolean;
   unwrap: () => TResult;
+  unwrapErr: () => TError;
   unwrapOr: (defaultResult: TResult) => TResult;
   unwrapOrElse: (defaultProvider: (error: TError) => TResult) => TResult;
   ok: () => TResult | undefined;
@@ -37,6 +38,13 @@ function makeResult<TResult, TError>({
         return result!;
       } else {
         throw error;
+      }
+    },
+    unwrapErr: () => {
+      if (isErr()) {
+        return error!;
+      } else {
+        throw result;
       }
     },
     unwrapOr: (defaultResult: TResult) => {

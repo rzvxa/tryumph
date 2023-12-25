@@ -21,6 +21,10 @@ describe("Ok Result Tests", () => {
     expect(Ok("OK").error()).toBeUndefined();
   });
 
+  test("calling unwrapErr on Ok Result should throw original value", () => {
+    expect(Ok("OK").unwrapErr).toThrow("OK");
+  });
+
   test("calling unwrapOr on Ok Result should return original value", () => {
     expect(Ok("OK").unwrapOr("DEFAULT")).toBe("OK");
   });
@@ -59,6 +63,10 @@ describe("Err Result Tests", () => {
 
   test("should return a Result with error value equal to 'ERROR'", () => {
     expect(Err("ERROR").error()).toBe("ERROR");
+  });
+
+  test("calling unwrapErr on Err Result should return error value", () => {
+    expect(Err("ERROR").unwrapErr()).toBe("ERROR");
   });
 
   test("calling unwrapOr on Err Result should return default value", () => {
