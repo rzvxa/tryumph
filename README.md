@@ -22,6 +22,15 @@ Bring the "Umph" back to the JavaScript error handling!
   console.log(result.unwrapOr("Default")); // "Default"
 ```
 
+That seems too rusty? What about something like this? Let's Go!
+```js
+  const { res, err } = await tryAsync(itMayThrow());
+  if (!!err) {
+    handleError(err);
+  }
+  consumeResult(res);
+```
+
 ## But Why?
 We all have been in places where we want to get some result from a function that can throw, This is especially true for async functions since we usually need async operations to handle IO.
 So let's take a look at this example:
