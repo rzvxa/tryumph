@@ -2,8 +2,8 @@ type Result<TResult, TError> = {
   isOk: () => boolean;
   isErr: () => boolean;
   unwrap: () => TResult;
-  // ok: () => TResult;
-  // error: () => TError;
+  ok: () => TResult;
+  error: () => TError;
 };
 
 function makeResult<TResult, TError>({
@@ -29,14 +29,28 @@ function makeResult<TResult, TError>({
   const isErr = () => {
     return error !== null;
   };
+  const unwrap = () => {
+    if (isErr()) {
+      throw error;
+    }
+    return result;
+  };
+
   return {
     isOk,
     isErr,
-    unwrap: () => {
+    unwrap,
+    ok: () => {
       if (isErr()) {
-        throw error;
+        throw "Illegal attempt to access result value on a Err result! Check if the result 'isOk' before calling this function.";
       }
       return result;
+    },
+    error: () => {
+      if (isOk()) {
+        throw "Illegal attempt to access error value on a Ok result! Check if the result 'isErr' before calling this function.";
+      }
+      return error;
     },
   };
 }
