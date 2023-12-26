@@ -1,7 +1,7 @@
 import type { Result } from "./result";
 import { Ok, Err } from "./result";
 
-async function $try<TResult, TError>(
+async function try$<TResult, TError>(
   promise: Promise<TResult>
 ): Promise<Result<TResult, TError>> {
   try {
@@ -12,4 +12,4 @@ async function $try<TResult, TError>(
   }
 }
 
-export default $try;
+export default try$;

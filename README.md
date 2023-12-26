@@ -6,7 +6,7 @@ Bring the "Umph" back to the JavaScript error handling!
 
 ## What is it?
 ```js
-  const result = await tryAsync(itMayThrow());
+  const result = await try$(itMayThrow());
   result.match(
     when(Ok, consumeResult),
     when(Err, handleError)
@@ -15,7 +15,7 @@ Bring the "Umph" back to the JavaScript error handling!
 
 That seems too rusty? What about something like this? Let's Go!
 ```js
-  const [res, err] = await tryAsync(itMayThrow());
+  const [res, err] = await try$(itMayThrow());
   if (!!err) {
     handleError(err);
     return;
@@ -77,9 +77,9 @@ How about when we want to load some additional data based on the first request? 
 ```
 As you can see it really easily gets out of hand... So let's rewrite it using `tryumph`!
 ```js
-  const userResult = await tryAsync(axios.get("/user/12345"));
+  const userResult = await try$(axios.get("/user/12345"));
   const user = userResult.unwrapOr(defaultUser);
-  const avatarResult = await tryAsync(axios.get(user.avatarImage));
+  const avatarResult = await try$(axios.get(user.avatarImage));
   const avatar = avatarResult.unwrapOr(defaultAvatar);
   consumeResult(user, avatar);
 ```
