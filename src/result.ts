@@ -1,15 +1,17 @@
 import type { Matcher } from "./matcher";
 
-class Result<TResult, TError> {
-  #result: TResult | undefined;
-  #error: TError | undefined;
+const tupleConstructor: new <T, Y>(...p: [T | undefined, Y | undefined]) => [
+  T | undefined,
+  Y | undefined
+] = Array as any;
 
+class Result<TResult, TError> extends tupleConstructor<TResult, TError> {
   public get res(): TResult | undefined {
-    return this.#result!;
+    return this[0];
   }
 
   public get err(): TError | undefined {
-    return this.#error!;
+    return this[1];
   }
 
   constructor({
@@ -30,29 +32,29 @@ class Result<TResult, TError> {
       );
     }
 
-    this.#result = result;
-    this.#error = error;
+    super(result, error);
+    (this as any).__proto__ = Result.prototype;
   }
 
-  isOk = (): boolean => this.#result !== undefined;
-  isErr = (): boolean => this.#error !== undefined;
+  isOk = (): boolean => this.res !== undefined;
+  isErr = (): boolean => this.err !== undefined;
 
-  ok = (): TResult => this.#result!;
-  error = (): TError => this.#error!;
+  ok = (): TResult => this.res!;
+  error = (): TError => this.err!;
 
   unwrap = (): TResult => {
     if (this.isOk()) {
-      return this.#result!;
+      return this.res!;
     } else {
-      throw this.#error;
+      throw this.err;
     }
   };
 
   unwrapErr = (): TError => {
     if (this.isErr()) {
-      return this.#error!;
+      return this.err!;
     } else {
-      throw this.#result;
+      throw this.res;
     }
   };
 
@@ -60,15 +62,15 @@ class Result<TResult, TError> {
     if (this.isErr()) {
       return defaultResult;
     } else {
-      return this.#result!;
+      return this.res!;
     }
   };
 
   unwrapOrElse = (defaultProvider: (error: TError) => TResult): TResult => {
     if (this.isErr()) {
-      return defaultProvider(this.#error!);
+      return defaultProvider(this.err!);
     } else {
-      return this.#result!;
+      return this.res!;
     }
   };
 
