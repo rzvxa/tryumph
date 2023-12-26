@@ -1,27 +1,27 @@
 import type { Matcher } from "./matcher";
 
-const tupleConstructor: new <T, Y>(...p: [T | undefined, Y | undefined]) => [
-  T | undefined,
-  Y | undefined
+const tupleConstructor: new <T, Y>(...p: [T | null, Y | null]) => [
+  T | null,
+  Y | null
 ] = Array as any;
 
 class Result<TResult, TError> extends tupleConstructor<TResult, TError> {
-  public get res(): TResult | undefined {
+  public get res(): TResult | null {
     return this[0];
   }
 
-  public get err(): TError | undefined {
+  public get err(): TError | null {
     return this[1];
   }
 
   constructor({
-    result = undefined,
-    error = undefined,
+    result = null,
+    error = null,
   }: {
-    result?: TResult | undefined;
-    error?: TError | undefined;
+    result?: TResult | null;
+    error?: TError | null;
   }) {
-    if (result === undefined && error === undefined) {
+    if (result === null && error === null) {
       throw Error(
         "No result nor error where provided, You should provide at least one in order to make a result"
       );
@@ -36,8 +36,8 @@ class Result<TResult, TError> extends tupleConstructor<TResult, TError> {
     (this as any).__proto__ = Result.prototype;
   }
 
-  isOk = (): boolean => this.res !== undefined;
-  isErr = (): boolean => this.err !== undefined;
+  isOk = (): boolean => this.res !== null;
+  isErr = (): boolean => this.err !== null;
 
   ok = (): TResult => this.res!;
   error = (): TError => this.err!;

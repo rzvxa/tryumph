@@ -17,8 +17,8 @@ describe("Ok Result Tests", () => {
     expect(Ok("OK").ok()).toBe("OK");
   });
 
-  test("should return a Result which has undefined  error value", () => {
-    expect(Ok("OK").error()).toBeUndefined();
+  test("should return a Result which has null  error value", () => {
+    expect(Ok("OK").error()).toBeNull();
   });
 
   test("calling unwrapErr on Ok Result should throw original value", () => {
@@ -105,8 +105,8 @@ describe("Err Result Tests", () => {
     expect(Err("ERROR").error()).toBe("ERROR");
   });
 
-  test("should return a Result which has undefined ok value", () => {
-    expect(Err("OK").ok()).toBeUndefined();
+  test("should return a Result which has null ok value", () => {
+    expect(Err("OK").ok()).toBeNull();
   });
 
   test("should return a Result with error value equal to 'ERROR'", () => {
@@ -136,5 +136,10 @@ describe("Deconstructing Result Tests", () => {
   test("should return a Result that can be decunstructed to { res, err }", () => {
     expect(Ok("OK")).toEqual(expect.objectContaining({ res: "OK" }));
     expect(Err("ERROR")).toEqual(expect.objectContaining({ err: "ERROR" }));
+  });
+
+  test("should return a Result that can be decunstructed as a tuple to [res, err]", () => {
+    expect(Ok("OK")).toEqual(expect.arrayContaining(["OK", null]));
+    expect(Err("ERROR")).toEqual(expect.arrayContaining([null, "ERROR"]));
   });
 });
