@@ -15,7 +15,7 @@ Bring the "Umph" back to the JavaScript error handling!
 
 That seems too rusty? What about something like this? Let's Go!
 ```js
-  const { res, err } = await tryAsync(itMayThrow());
+  const [res, err] = await tryAsync(itMayThrow());
   if (!!err) {
     handleError(err);
     return;
