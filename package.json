@@ -1,6 +1,6 @@
 {
   "name": "tryumph",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Bring the \"Umph\" to the javascript's async error handling",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
