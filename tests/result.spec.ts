@@ -185,4 +185,12 @@ describe("match Result Tests", () => {
     expect(errTransformer).toHaveReturnedTimes(1);
     expect(otherTransformer).toHaveReturnedTimes(0);
   });
+
+  test("non exhaustive pattern matching should throw", () => {
+    const okTransformer = jest.fn(() => "ERR");
+    const otherTransformer = jest.fn(() => "OTHER");
+    expect(() => Err(true).match(when(Ok, okTransformer))).toThrow();
+    expect(okTransformer).toHaveReturnedTimes(0);
+    expect(otherTransformer).toHaveReturnedTimes(0);
+  });
 });
