@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "prepublish": "tsc",
+    "prepare": "ts-node ./scripts/prepare.ts & npm run build",
     "test": "jest",
     "build": "tsc"
   },
