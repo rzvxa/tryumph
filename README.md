@@ -107,9 +107,9 @@ Much cleaner huh? `tryumph` borrows heavily from `Rust` and `Go` error handling 
 
 ## Roadmap
 
-- [ ] Make it feature complete
+- [x] Make it feature complete
 - [ ] Write additional tests to cover more edge cases
-- [ ] Full documentation
+- [x] Full documentation
 - [ ] Examples
 - [ ] Publish production-ready release
 
