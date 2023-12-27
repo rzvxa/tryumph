@@ -40,7 +40,7 @@
   "bugs": {
     "url": "https://github.com/rzvxa/tryumph/issues"
   },
-  "homepage": "https://github.com/rzvxa/tryumph#readme",
+  "homepage": "https://rzvxa.github.io/tryumph/",
   "devDependencies": {
     "@types/jest": "^29.5.11",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
