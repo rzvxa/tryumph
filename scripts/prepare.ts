@@ -5,8 +5,9 @@ async function rmDir(
   dirPath: string,
   removeSelf: boolean = true
 ): Promise<boolean> {
+  let files: string[] | null = null;
   try {
-    var files = await fs.readdir(dirPath);
+    files = await fs.readdir(dirPath);
   } catch (e) {
     return false;
   }

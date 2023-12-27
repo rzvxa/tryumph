@@ -29,7 +29,7 @@ function when<TResult, TError, TMatchResult>(
   transform: MatchTransform<TResult, TError, TMatchResult>
 ): Matcher<TResult, TError, TMatchResult> {
   return {
-    condition: <TResult, TError>(result: Result<TResult, TError>): boolean => {
+    condition: (result: Result<TResult, TError>): boolean => {
       if (pattern === Ok && result.isOk()) {
         return true;
       } else if (pattern == Err && result.isErr()) {

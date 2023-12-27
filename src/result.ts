@@ -47,6 +47,7 @@ class Result<TResult, TError> extends TupleConstructor<TResult, TError> {
     }
 
     super(result, error);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (this as any).__proto__ = Result.prototype;
   }
 
@@ -160,9 +161,11 @@ class Result<TResult, TError> extends TupleConstructor<TResult, TError> {
    *
    * @returns The `other` result if this is `Ok`, otherwise returns the error value of itself.
    */
-  and = <TResult>(other: Result<TResult, TError>): Result<TResult, TError> => {
+  and = <TResultOther>(
+    other: Result<TResultOther, TError>
+  ): Result<TResultOther, TError> => {
     if (this.isErr()) {
-      return this as unknown as Result<TResult, TError>;
+      return this as unknown as Result<TResultOther, TError>;
     } else {
       return other;
     }
