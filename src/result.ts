@@ -1,11 +1,7 @@
 import type { Matcher } from "./matcher";
+import TupleConstructor from "./tupleConstructor";
 
-const tupleConstructor: new <T, Y>(...p: [T | null, Y | null]) => [
-  T | null,
-  Y | null
-] = Array as any;
-
-class Result<TResult, TError> extends tupleConstructor<TResult, TError> {
+class Result<TResult, TError> extends TupleConstructor<TResult, TError> {
   public get res(): TResult | null {
     return this[0];
   }
