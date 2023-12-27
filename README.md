@@ -92,3 +92,35 @@ Much cleaner huh? `tryumph` borrows heavily from `Rust` and `Go` error handling 
 - [ ] Full documentation
 - [ ] Examples
 - [ ] Publish production ready release
+
+## More examples
+
+What is in Result?
+```js
+  const a = await try$(itWillBeFine());
+  console.log(result.isOk()); // true
+  console.log(result.isErr()); // false
+  console.log(result.ok()); // "Result"
+  console.log(result.error()); // undefined
+  console.log(result.unwrap()); // "Result"
+  console.log(result.unwrapOr("Default")); // "Result"
+  const b = await try$(itWillThrow());
+  console.log(result.isOk()); // false
+  console.log(result.isErr()); // true
+  console.log(result.ok()); // undefined
+  console.log(result.error()); // "Error"
+  console.log(result.unwrap()); // CRASH!! it will throw the error!
+  console.log(result.unwrapOr("Default")); // "Default"
+```
+
+Here is another way of calling function.
+```js
+  const sum = async (a, b) => a + b;
+  const [res, err] = await tryFn$(sum, 1, 2);
+  if (!!err) {
+    handleError(err);
+    return;
+  }
+  consumeResult(res);
+
+```
