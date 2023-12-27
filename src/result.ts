@@ -5,6 +5,8 @@ import TupleConstructor from "./tupleConstructor";
  * A `Result` can either contain a result value or an error value.
  */
 class Result<TResult, TError> extends TupleConstructor<TResult, TError> {
+  private readonly containsAmbiguousError!: boolean;
+
   /**
    * Get the result value.
    *
@@ -25,6 +27,33 @@ class Result<TResult, TError> extends TupleConstructor<TResult, TError> {
   }
 
   /**
+   * Creates an `Ok` `Result`.
+   *
+   * @param result - The result value.
+   *
+   * @returns A `Result` object containing the given result value.
+   */
+  static makeOk = <R, E>(result: R): Result<R, E> => {
+    return new Result<R, E>({ result });
+  };
+
+  /**
+   * Creates an `Err` `Result`.
+   *
+   * @param error - The error value.
+   *
+   * @returns A `Result` object containing the given error value.
+   */
+  static makeErr = <R, E>(error: E): Result<R, E> => {
+    const self = new Result<R, E>({ error });
+    if (!error) {
+      // @ts-expect-error this field is supposed to be set by makeErr function
+      self.containsAmbiguousError = true;
+    }
+    return self;
+  };
+
+  /**
    * Create a Result.
    *
    * @param options - The result initialization options.
@@ -33,7 +62,7 @@ class Result<TResult, TError> extends TupleConstructor<TResult, TError> {
    *
    * @internal
    */
-  constructor({
+  private constructor({
     result = null,
     error = null,
   }: {
@@ -63,7 +92,8 @@ class Result<TResult, TError> extends TupleConstructor<TResult, TError> {
    *
    * @returns `true` if the result is `Err`.
    */
-  isErr = (): boolean => this.err !== null;
+  isErr = (): boolean =>
+    this.err !== null || this.containsAmbiguousError || this.isOk === null;
 
   /**
    * Get the result value.
@@ -200,27 +230,8 @@ class Result<TResult, TError> extends TupleConstructor<TResult, TError> {
   };
 }
 
-/**
- * Creates an `Ok` `Result`.
- *
- * @param result - The result value.
- *
- * @returns A `Result` object containing the given result value.
- */
-function Ok<TResult, TError>(result: TResult): Result<TResult, TError> {
-  return new Result({ result });
-}
-
-/**
- * Creates an `Err` `Result`.
- *
- * @param error - The error value.
- *
- * @returns A `Result` object containing the given error value.
- */
-function Err<TResult, TError>(error: TError): Result<TResult, TError> {
-  return new Result({ error });
-}
+const Ok = Result.makeOk;
+const Err = Result.makeErr;
 
 export type { Result };
 export { Ok, Err };

@@ -3,6 +3,14 @@ import when from "../src/when";
 
 describe("Ok Result Tests", () => {
   test("should return a Result reporting isOk status", () => {
+    expect(Ok(undefined).isOk()).toBe(true);
+  });
+
+  test("should return a Result reporting isOk status", () => {
+    expect(Ok(null).isOk()).toBe(true);
+  });
+
+  test("should return a Result reporting isOk status", () => {
     expect(Ok("").isOk()).toBe(true);
   });
 
@@ -90,6 +98,10 @@ describe("Result 'and' function Tests", () => {
 });
 
 describe("Err Result Tests", () => {
+  test("should return a Result reporting isErr status", () => {
+    expect(Err(undefined).isErr()).toBe(true);
+  });
+
   test("should return a Result not reporting isOk status", () => {
     expect(Err("").isOk()).toBe(false);
   });
