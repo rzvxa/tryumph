@@ -69,12 +69,6 @@ class Result<TResult, TError> extends TupleConstructor<TResult, TError> {
     result?: TResult | null;
     error?: TError | null;
   }) {
-    if (result && error) {
-      throw Error(
-        "Both result and error where provided, You should only pass one to the constructor"
-      );
-    }
-
     super(result, error);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (this as any).__proto__ = Result.prototype;
