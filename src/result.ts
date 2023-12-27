@@ -21,11 +21,6 @@ class Result<TResult, TError> extends tupleConstructor<TResult, TError> {
     result?: TResult | null;
     error?: TError | null;
   }) {
-    if (result === null && error === null) {
-      throw Error(
-        "No result nor error where provided, You should provide at least one in order to make a result"
-      );
-    }
     if (result && error) {
       throw Error(
         "Both result and error where provided, You should only pass one to the constructor"
@@ -36,7 +31,7 @@ class Result<TResult, TError> extends tupleConstructor<TResult, TError> {
     (this as any).__proto__ = Result.prototype;
   }
 
-  isOk = (): boolean => this.res !== null;
+  isOk = (): boolean => this.err === null;
   isErr = (): boolean => this.err !== null;
 
   ok = (): TResult => this.res!;
