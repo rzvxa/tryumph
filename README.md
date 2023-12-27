@@ -1,6 +1,7 @@
 # tryumph
 
 ![GitHub License](https://img.shields.io/github/license/rzvxa/tryumph)
+[![Test](https://github.com/rzvxa/tryumph/actions/workflows/test.yml/badge.svg)](https://github.com/rzvxa/tryumph/actions/workflows/test.yml)
 
 Bring the "Umph" back to the JavaScript error handling!
 
