@@ -7,6 +7,7 @@
   "include": [
     "src/**/*.ts",
     "scripts/**/*.ts",
+    "scripts/**/*.mjs",
     "tests/**/*.ts",
     ".eslintrc.js",
     "jest.config.js"

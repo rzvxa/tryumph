@@ -4,13 +4,13 @@
   "description": "Bring the \"Umph\" to the javascript's async error handling",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
-    "prepare": "ts-node ./scripts/prepare.ts & npm run build",
-    "test": "jest",
+    "prepare": "ts-node ./scripts/prepare.ts && npm run build",
     "lint": "eslint .",
+    "test": "jest",
+    "test-cov": "npm run test -- --coverage",
+    "test-coveralls": "npm run test-cov && node ./scripts/coveralls.mjs",
     "build": "tsc"
   },
   "repository": {
@@ -45,6 +45,7 @@
     "@types/jest": "^29.5.11",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
     "@typescript-eslint/parser": "^6.16.0",
+    "coveralls": "^3.1.1",
     "eslint": "^8.56.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.1",
