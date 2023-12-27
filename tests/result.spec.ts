@@ -146,12 +146,31 @@ describe("Deconstructing Result Tests", () => {
 });
 
 describe("match Result Tests", () => {
-  test("should return a OK result that will match to Ok function", () => {
+  test("should return a OK result that will match to Ok function and nothing else", () => {
+    const okTransformer = jest.fn(() => "OK");
+    const otherTransformer = jest.fn(() => "OTHER");
     expect(
       Ok(true).match(
-        when(Ok, () => "OK"),
-        when(Err, () => "ERR")
+        when(Ok, okTransformer),
+        when(Err, otherTransformer),
+        when("nothing" as unknown as typeof Ok, otherTransformer)
       )
     ).toEqual("OK");
+    expect(okTransformer).toHaveReturnedTimes(1);
+    expect(otherTransformer).toHaveReturnedTimes(0);
+  });
+
+  test("should return a Err result that will match to Err function and nothing else", () => {
+    const errTransformer = jest.fn(() => "ERR");
+    const otherTransformer = jest.fn(() => "OTHER");
+    expect(
+      Ok(true).match(
+        when(Ok, errTransformer),
+        when(Err, otherTransformer),
+        when("nothing" as unknown as typeof Ok, otherTransformer)
+      )
+    ).toEqual("ERR");
+    expect(errTransformer).toHaveReturnedTimes(1);
+    expect(otherTransformer).toHaveReturnedTimes(0);
   });
 });
