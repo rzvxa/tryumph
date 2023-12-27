@@ -1,8 +1,9 @@
 # tryumph
 
-![GitHub License](https://img.shields.io/github/license/rzvxa/tryumph)
+[![GitHub License](https://img.shields.io/github/license/rzvxa/tryumph)](https://github.com/rzvxa/tryumph/blob/master/LICENSE)
 [![Test](https://github.com/rzvxa/tryumph/actions/workflows/test.yml/badge.svg)](https://github.com/rzvxa/tryumph/actions/workflows/test.yml)
-![Coveralls branch](https://img.shields.io/coverallsCoverage/github/rzvxa/tryumph)
+[![Coveralls branch](https://img.shields.io/coverallsCoverage/github/rzvxa/tryumph)](https://github.com/rzvxa/tryumph/tree/master/tests)
+[![Static Badge](https://img.shields.io/badge/visit-docs-brightgreen?link=https%3A%2F%2Fgoogle.com)](https://rzvxa.github.io/tryumph/index.html)
 
 Bring the "Umph" back to the JavaScript error handling!
 
@@ -104,6 +105,9 @@ As you can see it really easily gets out of hand... So let's rewrite it using `t
   consumeResult(user, avatar);
 ```
 Much cleaner huh? `tryumph` borrows heavily from `Rust` and `Go` error handling to provide a more sane way for keeping errors under control!
+
+## Documentation
+You can read the documentation over [here](https://rzvxa.github.io/tryumph/index.html).
 
 ## Roadmap
 
