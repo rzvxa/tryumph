@@ -1,4 +1,5 @@
 import { Ok, Err } from "../src/result";
+import when from "../src/when";
 
 describe("Ok Result Tests", () => {
   test("should return a Result reporting isOk status", () => {
@@ -141,5 +142,16 @@ describe("Deconstructing Result Tests", () => {
   test("should return a Result that can be decunstructed as a tuple to [res, err]", () => {
     expect(Ok("OK")).toEqual(expect.arrayContaining(["OK", null]));
     expect(Err("ERROR")).toEqual(expect.arrayContaining([null, "ERROR"]));
+  });
+});
+
+describe("match Result Tests", () => {
+  test("should return a OK result that will match to Ok function", () => {
+    expect(
+      Ok(true).match(
+        when(Ok, () => "OK"),
+        when(Err, () => "ERR")
+      )
+    ).toEqual("OK");
   });
 });

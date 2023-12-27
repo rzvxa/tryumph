@@ -11,9 +11,9 @@ function when<TResult, TError, TMatchResult>(
       if (pattern === Ok && result.isOk()) {
         return true;
       } else if (pattern == Err && result.isErr()) {
-        return false;
+        return true;
       } else {
-        throw "This shouldn't happen!";
+        return false;
       }
     },
     transform,
