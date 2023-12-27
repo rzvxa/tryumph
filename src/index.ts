@@ -1,4 +1,4 @@
-console.error(
+console.warn(
   "experimental library, not ready for production use. everything maybe subject to change!"
 );
 import type { Matcher } from "./matcher";
