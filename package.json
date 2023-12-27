@@ -4,9 +4,7 @@
   "description": "Bring the \"Umph\" to the javascript's async error handling",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "prepare": "ts-node ./scripts/prepare.ts & npm run build",
     "test": "jest",
@@ -17,9 +15,22 @@
     "url": "git+https://github.com/rzvxa/tryumph.git"
   },
   "keywords": [
+    "try",
     "async",
     "errorHandling",
-    "dontThrow'"
+    "dontThrow",
+    "fault tolerant",
+    "production",
+    "node.js",
+    "typescript",
+    "strong",
+    "rust",
+    "rust like",
+    "rust error handling",
+    "go",
+    "go like",
+    "go error handling",
+    "tryumph"
   ],
   "author": "rzvxa",
   "license": "MIT",
