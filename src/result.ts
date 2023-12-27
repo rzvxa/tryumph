@@ -224,7 +224,30 @@ class Result<TResult, TError> extends TupleConstructor<TResult, TError> {
   };
 }
 
+/**
+ * Creates an `Ok` `Result`.
+ *
+ * @remarks
+ *
+ * This is just a public export of {@link Result.makeOk}
+ *
+ * @param result - The result value.
+ *
+ * @returns A `Result` object containing the given result value.
+ */
 const Ok = Result.makeOk;
+
+/**
+ * Creates an `Err` `Result`.
+ *
+ * @remarks
+ *
+ * This is just a public export of {@link Result.makeErr}
+ *
+ * @param error - The error value.
+ *
+ * @returns A `Result` object containing the given error value.
+ */
 const Err = Result.makeErr;
 
 export type { Result };

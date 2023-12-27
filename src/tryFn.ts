@@ -1,6 +1,9 @@
 import type { Result } from "./result";
 import { Ok, Err } from "./result";
 
+/**
+ * Generic type for referencing any function with its included arguments and return type.
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyFunction = (...args: any[]) => any;
 
