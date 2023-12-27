@@ -6,16 +6,34 @@ Bring the "Umph" back to the JavaScript error handling!
 
 ## What is it?
 ```js
-  const result = await try$(itMayThrow());
+  const result = await try$(itMayThrow(a, b, c));
   result.match(
     when(Ok, consumeResult),
     when(Err, handleError)
   );
 ```
 
-That seems too rusty? What about something like this? Let's Go!
+Does that seem too rusty? What about something like this? Let's Go!
 ```js
-  const [res, err] = await try$(itMayThrow());
+  const [res, err] = await try$(itMayThrow(a, b, c));
+  if (!!err) {
+    handleError(err);
+    return;
+  }
+  consumeResult(res);
+```
+
+You may say these are all async, What about sync operations? Here are the examples above but this time as sync functions.
+```js
+  const result = tryFn$(itMayThrow, a, b, c);
+  result.match(
+    when(Ok, consumeResult),
+    when(Err, handleError)
+  );
+```
+Or
+```js
+  const [res, err] = tryFn$(itMayThrow, a, b, c);
   if (!!err) {
     handleError(err);
     return;
@@ -46,7 +64,7 @@ If we want to handle the errors properly with `async/await` pattern we have to w
 ```
 
 That is still not that bad, Right?
-So what if we want to handle errors by using a default value instead of canceling the operation?
+What if we want to handle errors by using a default value instead of canceling the operation?
 Now we have to rewrite our code like this:
 ```js
   let user = null;
@@ -57,7 +75,7 @@ Now we have to rewrite our code like this:
   }
   consumeResult(user);
 ```
-How about when we want to load some additional data based on the first request? So let's modify the code above to load the user avatar too.
+How about when we would like to load some additional data based on the first request? So let's modify the code above to load the user avatar too.
 ```js
   let user = null;
   let avatar = null;
@@ -91,7 +109,7 @@ Much cleaner huh? `tryumph` borrows heavily from `Rust` and `Go` error handling 
 - [ ] Write additional tests to cover more edge cases
 - [ ] Full documentation
 - [ ] Examples
-- [ ] Publish production ready release
+- [ ] Publish production-ready release
 
 ## More examples
 
@@ -113,10 +131,10 @@ What is in Result?
   console.log(result.unwrapOr("Default")); // "Default"
 ```
 
-Here is another way of calling function.
+Here is another sync example
 ```js
-  const sum = async (a, b) => a + b;
-  const [res, err] = await tryFn$(sum, 1, 2);
+  const sum = (a, b) => a + b;
+  const [res, err] = tryFn$(sum, 1, 2);
   if (!!err) {
     handleError(err);
     return;
