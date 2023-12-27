@@ -1,6 +1,6 @@
 # tryumph
 
-WIP: published early to reserve the name
+![GitHub License](https://img.shields.io/github/license/rzvxa/tryumph)
 
 Bring the "Umph" back to the JavaScript error handling!
 
