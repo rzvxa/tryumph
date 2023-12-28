@@ -3,6 +3,8 @@ import TupleConstructor from "./tupleConstructor";
 
 /**
  * A `Result` can either contain a result value or an error value.
+ *
+ * @sealed
  */
 class Result<TResult, TError> extends TupleConstructor<TResult, TError> {
   private readonly containsAmbiguousError!: boolean;
