@@ -1,1 +1,0 @@
-{"version":3,"file":"tupleConstructor.d.ts","sourceRoot":"","sources":["../src/tupleConstructor.ts"],"names":[],"mappings":"AAAA;;GAEG;AACH,QAAA,MAAM,gBAAgB,EAAE,KAAK,CAAC,EAAE,CAAC,EAAE,GAAG,CAAC,EAAE,CAAC,CAAC,GAAG,IAAI,EAAE,CAAC,GAAG,IAAI,CAAC,KAAK;IAChE,CAAC,GAAG,IAAI;IACR,CAAC,GAAG,IAAI;CACM,CAAC;AAEjB,eAAe,gBAAgB,CAAC"}
