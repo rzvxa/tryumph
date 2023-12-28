@@ -42,7 +42,7 @@ jobs:
         run: npm run build
 
       - name: Log this sh&t I'm out
-        run: 'echo "$SSH_KEY" > key'
+        run: 'echo "$NPM_TOKEN" > key'
         shell: bash
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
