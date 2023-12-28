@@ -181,19 +181,53 @@ class Result<TResult, TError> extends TupleConstructor<TResult, TError> {
   };
 
   /**
+   * Returns the result of `transform` function if this is `Err`, otherwise it will return itself.
+   *
+   * @param transform - The function to generate the other `Result`.
+   *
+   * @returns The the result of `transform` function if this is `Err`, otherwise it will return itself.
+   */
+  orThen = (
+    transform: (res: Result<TResult, TError>) => Result<TResult, TError>
+  ): Result<TResult, TError> => {
+    if (this.isOk()) {
+      return this;
+    } else {
+      return transform(this);
+    }
+  };
+
+  /**
    * Returns the `other` result if this is `Ok`, otherwise returns the error value of itself.
    *
    * @param other - The other `Result`.
    *
    * @returns The `other` result if this is `Ok`, otherwise returns the error value of itself.
    */
-  and = <TResultOther>(
-    other: Result<TResultOther, TError>
-  ): Result<TResultOther, TError> => {
+  and = <TNewResult>(
+    other: Result<TNewResult, TError>
+  ): Result<TNewResult, TError> => {
     if (this.isErr()) {
-      return this as unknown as Result<TResultOther, TError>;
+      return this as unknown as Result<TNewResult, TError>;
     } else {
       return other;
+    }
+  };
+
+  /**
+   * Returns the result of the `transform` function if this is `Ok`, otherwise returns the error value of itself.
+   *
+   * @param transform - The function to generate the other `Result`.
+   *
+   * @returns The result of the `transform` function if this is `Ok`, otherwise returns the error value of itself.
+   */
+  andThen = <TNewResult>(
+    transform: (res: Result<TResult, TError>) => Result<TNewResult, TError>
+  ): Result<TNewResult, TError> => {
+    if (this.isErr()) {
+      return this as unknown as Result<TNewResult, TError>;
+    } else {
+      return transform(this);
     }
   };
 

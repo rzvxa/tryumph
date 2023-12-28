@@ -73,6 +73,30 @@ describe("Result 'or' function Tests", () => {
   });
 });
 
+describe("Result 'orThen' function Tests", () => {
+  const firstOk = Ok<unknown, unknown>("FIRST_OK");
+  const secondOk = Ok<unknown, unknown>("SECOND_OK");
+
+  const firstErr = Err<unknown, unknown>("FIRST_ERR");
+  const secondErr = Err<unknown, unknown>("SECOND_ERR");
+
+  test("should return first Result if first Result is Ok", () => {
+    expect(firstOk.orThen((_) => secondOk)).toBe(firstOk);
+  });
+
+  test("should return second Result if first Result is Err", () => {
+    expect(firstErr.orThen((_) => secondOk)).toBe(secondOk);
+  });
+
+  test("should return second Err Result if both Results are Err", () => {
+    expect(firstErr.orThen((_) => secondErr).isErr()).toBe(true);
+  });
+
+  test("should return first Ok Result if both Results are Ok", () => {
+    expect(firstOk.orThen((_) => secondOk).isOk()).toBe(true);
+  });
+});
+
 describe("Result 'and' function Tests", () => {
   const firstOk = Ok<unknown, unknown>("FIRST_OK");
   const secondOk = Ok<unknown, unknown>("SECOND_OK");
@@ -94,6 +118,30 @@ describe("Result 'and' function Tests", () => {
 
   test("should return second result if both are Ok", () => {
     expect(firstOk.and(secondOk)).toBe(secondOk);
+  });
+});
+
+describe("Result 'andThen' function Tests", () => {
+  const firstOk = Ok<unknown, unknown>("FIRST_OK");
+  const secondOk = Ok<unknown, unknown>("SECOND_OK");
+
+  const firstErr = Err<unknown, unknown>("FIRST_ERR");
+  const secondErr = Err<unknown, unknown>("SECOND_ERR");
+
+  test("should return second result if first one is Ok", () => {
+    expect(firstOk.andThen((_) => secondErr)).toBe(secondErr);
+  });
+
+  test("should return first result if it is Err", () => {
+    expect(firstErr.andThen((_) => secondOk)).toBe(firstErr);
+  });
+
+  test("should return first result if both are Err", () => {
+    expect(firstErr.andThen((_) => secondErr)).toBe(firstErr);
+  });
+
+  test("should return second result if both are Ok", () => {
+    expect(firstOk.andThen((_) => secondOk)).toBe(secondOk);
   });
 });
 
