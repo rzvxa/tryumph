@@ -4,6 +4,10 @@ on:
   push:
     branches: [ "master" ]
 
+# Sets permissions for deploy
+permissions:
+  contents: write
+
 jobs:
   release:
     name: Release
