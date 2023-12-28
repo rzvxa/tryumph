@@ -3,8 +3,6 @@ name: Publish
 on:
   push:
     branches: [ "master" ]
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 # Sets permissions for deploy
 permissions:
@@ -40,12 +38,6 @@ jobs:
 
       - name: Build
         run: npm run build
-
-      - name: Log this sh&t I'm out
-        run: 'echo "$NPM_TOKEN" > key'
-        shell: bash
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Release
         run: npx semantic-release
