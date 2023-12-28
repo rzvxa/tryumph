@@ -41,15 +41,9 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Log this sh&t I'm out
-        run: 'echo "$NPM_TOKEN" | base64 --decode'
-        shell: bash
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Release
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: "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"
 
