@@ -12,7 +12,7 @@ import { Ok, Err } from "./result";
  *
  * @returns A `Promise` to a `Result` containing the result of `promise` or the error it may have thrown.
  */
-function try$<TResult, TError>(
+function try$<TResult, TError = any>( // eslint-disable-line @typescript-eslint/no-explicit-any
   promise: Promise<TResult>
 ): Promise<Result<TResult, TError>> & Dwaitable<Result<TResult, TError>> {
   const task = Promise.resolve(promise)

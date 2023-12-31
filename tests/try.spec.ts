@@ -27,7 +27,7 @@ describe("try$ Tests", () => {
   });
 
   test("should return a promise which can be turned into a DeferredPromise using dwait function", async () => {
-    const result = try$<string, unknown>(resolveMock()).dwait().isErr();
+    const result = try$<string>(resolveMock()).dwait().isErr();
     await expect(result).resolves.toEqual(false);
   });
 });

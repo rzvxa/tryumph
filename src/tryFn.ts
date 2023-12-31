@@ -15,7 +15,7 @@ type AnyFunction = (...args: any[]) => any;
  *
  * @returns A `Result` containing the result of `fn` or the error it may have thrown.
  */
-function tryFn$<TError, TFunc extends AnyFunction>(
+function tryFn$<TFunc extends AnyFunction, TError = any>( // eslint-disable-line @typescript-eslint/no-explicit-any
   fn: TFunc,
   ...args: Parameters<TFunc>
 ): Result<ReturnType<TFunc>, TError> {
