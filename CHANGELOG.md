@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/rzvxa/tryumph/compare/v1.1.1...v1.1.2) (2023-12-31)
+
+
+### Bug Fixes
+
+* update README ([7352e57](https://github.com/rzvxa/tryumph/commit/7352e5794a279a807e8eecf57205c8a16322ec46))
+
 ## [1.1.1](https://github.com/rzvxa/tryumph/compare/v1.1.0...v1.1.1) (2023-12-31)
 
 
