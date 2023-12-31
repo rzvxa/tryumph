@@ -41,6 +41,9 @@ jobs:
           node-version: 18
           cache: "npm"
 
+      - name: Install Dependencies
+        run: npm ci
+
       - name: TSDoc Action
         uses: erikyo/tsdoc-action@v1
         with:
