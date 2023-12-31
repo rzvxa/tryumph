@@ -46,6 +46,7 @@ jobs:
         with:
           source_dir: ./src/*
           output_dir: ./docs
+          excludeInternal: false
           front_page: README.md
 
       - name: Setup Pages
