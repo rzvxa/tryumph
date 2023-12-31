@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/rzvxa/tryumph/compare/v1.2.0...v1.2.1) (2023-12-31)
+
+
+### Bug Fixes
+
+* add default any type to the errors ([9d12c12](https://github.com/rzvxa/tryumph/commit/9d12c12a08f213a54690d327d3b464c30014194b))
+
 # [1.2.0](https://github.com/rzvxa/tryumph/compare/v1.1.2...v1.2.0) (2023-12-31)
 
 
