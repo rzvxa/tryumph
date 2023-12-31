@@ -15,8 +15,16 @@ Bring the "Umph" back to the JavaScript error handling!
     when(Err, handleError)
   );
 ```
+Or even better, You can use the `.dwait` function call on the returned promise of `try$` to get a `DeferredPromise` built using [dwait library](https://github.com/rzvxa/dwait):
+```js
+  const result = await try$(itMayThrow(a, b, c)).dwait().match(
+    when(Ok, consumeResult),
+    when(Err, handleError)
+  ).await;
+```
+With the use of `DeferredPromise` we can keep chaining functions instead of awaiting each result, And we can defer all awaits to the last operation.
 
-Does that seem too rusty? What about something like this? Let's Go!
+Does that seem too Rusty to you? What about something like this? Let's Go!
 ```js
   const [res, err] = await try$(itMayThrow(a, b, c));
   if (!!err) {
@@ -55,8 +63,8 @@ axios
   .catch((error) => handleError(error));
 ```
 
-It is the snippet of code from `ErrorHandling` section of `axios` library. So what about `async/await`?
-If we want to handle the errors properly with `async/await` pattern we have to write it inside a `try/catch` block like this:
+It is the snippet of code from the `ErrorHandling` section of `axios` library. So what about `async/await`?
+If we want to handle the errors properly with the `async/await` pattern we have to write it inside a `try/catch` block like this:
 ```js
   try {
     const resp = await axios.get("/user/12345");

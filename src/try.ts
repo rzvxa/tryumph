@@ -1,4 +1,7 @@
+import dwait from "dwait";
+
 import type { Result } from "./result";
+import type Dwaitable from "./Dwaitable";
 import { Ok, Err } from "./result";
 
 /**
@@ -9,15 +12,16 @@ import { Ok, Err } from "./result";
  *
  * @returns A `Promise` to a `Result` containing the result of `promise` or the error it may have thrown.
  */
-async function try$<TResult, TError>(
+function try$<TResult, TError>(
   promise: Promise<TResult>
-): Promise<Result<TResult, TError>> {
-  try {
-    const result: TResult = await promise;
-    return Ok(result);
-  } catch (err) {
-    return Err(err as TError);
-  }
+): Promise<Result<TResult, TError>> & Dwaitable<Result<TResult, TError>> {
+  const task = Promise.resolve(promise)
+    .then((result) => Ok<TResult, TError>(result))
+    .catch((err) => Err(err as TError));
+  // @ts-expect-error adding dwait to the result promise
+  task.dwait = () => dwait(task);
+  return task as Promise<Result<TResult, TError>> &
+    Dwaitable<Result<TResult, TError>>;
 }
 
 export default try$;
