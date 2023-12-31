@@ -3,7 +3,7 @@
 ![GitHub License](https://img.shields.io/github/license/rzvxa/tryumph)
 [![Test](https://github.com/rzvxa/tryumph/actions/workflows/test.yml/badge.svg)](https://github.com/rzvxa/tryumph/actions/workflows/test.yml)
 ![Coveralls branch](https://img.shields.io/coverallsCoverage/github/rzvxa/tryumph)
-![Static Badge](https://img.shields.io/badge/visit-docs-brightgreen?link=https%3A%2F%2Fgoogle.com)
+[![Documentation](https://img.shields.io/badge/visit-docs-brightgreen)](https://rzvxa.github.io/tryumph/)
 
 Bring the "Umph" back to the JavaScript error handling!
 
