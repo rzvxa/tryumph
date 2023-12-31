@@ -1,9 +1,9 @@
 # tryumph
 
-[![GitHub License](https://img.shields.io/github/license/rzvxa/tryumph)](https://github.com/rzvxa/tryumph/blob/master/LICENSE)
+![GitHub License](https://img.shields.io/github/license/rzvxa/tryumph)
 [![Test](https://github.com/rzvxa/tryumph/actions/workflows/test.yml/badge.svg)](https://github.com/rzvxa/tryumph/actions/workflows/test.yml)
-[![Coveralls branch](https://img.shields.io/coverallsCoverage/github/rzvxa/tryumph)](https://github.com/rzvxa/tryumph/tree/master/tests)
-[![Static Badge](https://img.shields.io/badge/visit-docs-brightgreen?link=https%3A%2F%2Fgoogle.com)](https://rzvxa.github.io/tryumph/index.html)
+![Coveralls branch](https://img.shields.io/coverallsCoverage/github/rzvxa/tryumph)
+![Static Badge](https://img.shields.io/badge/visit-docs-brightgreen?link=https%3A%2F%2Fgoogle.com)
 
 Bring the "Umph" back to the JavaScript error handling!
 
