@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/rzvxa/tryumph/compare/v1.1.2...v1.2.0) (2023-12-31)
+
+
+### Features
+
+* add support for `dwait` and `DeferredPromise`. ([503a332](https://github.com/rzvxa/tryumph/commit/503a33235304986b836fcc7db2f61f3b8e14fcf8))
+
 ## [1.1.2](https://github.com/rzvxa/tryumph/compare/v1.1.1...v1.1.2) (2023-12-31)
 
 
