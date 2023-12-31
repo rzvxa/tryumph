@@ -109,14 +109,6 @@ Much cleaner huh? `tryumph` borrows heavily from `Rust` and `Go` error handling 
 ## Documentation
 You can read the documentation over [here](https://rzvxa.github.io/tryumph/index.html).
 
-## Roadmap
-
-- [x] Make it feature complete
-- [ ] Write additional tests to cover more edge cases
-- [x] Full documentation
-- [ ] Examples
-- [ ] Publish production-ready release
-
 ## More examples
 
 What is in Result?
