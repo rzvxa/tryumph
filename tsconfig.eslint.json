@@ -10,7 +10,8 @@
     "scripts/**/*.mjs",
     "tests/**/*.ts",
     ".eslintrc.js",
-    "jest.config.js"
+    "jest.config.js",
+    "rollup.config.js"
   ],
   "exclude": ["node_modules", "dist"]
 }
