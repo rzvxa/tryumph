@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/rzvxa/tryumph/compare/v1.2.1...v1.2.2) (2024-01-03)
+
+
+### Bug Fixes
+
+* add rollup and multiple new bundles. ([#1](https://github.com/rzvxa/tryumph/issues/1)) ([b29af8d](https://github.com/rzvxa/tryumph/commit/b29af8df4171d8d1617cbe725d7e44ff307d018e))
+
 ## [1.2.1](https://github.com/rzvxa/tryumph/compare/v1.2.0...v1.2.1) (2023-12-31)
 
 
